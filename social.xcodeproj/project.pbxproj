@@ -13,6 +13,9 @@
 		311BC58D1F696843003D40FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311BC58C1F696843003D40FB /* Assets.xcassets */; };
 		311BC5901F696843003D40FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311BC58E1F696843003D40FB /* LaunchScreen.storyboard */; };
 		311BC5981F696A67003D40FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 311BC5971F696A67003D40FB /* GoogleService-Info.plist */; };
+		31698EAB1F69D43D00505A9E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31698EAA1F69D43D00505A9E /* Constants.swift */; };
+		31698EAD1F69E95200505A9E /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31698EAC1F69E95200505A9E /* FeedVC.swift */; };
+		31698EAF1F69EF0A00505A9E /* postCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31698EAE1F69EF0A00505A9E /* postCell.swift */; };
 		5C3D9F378E4B1949C9FBB646 /* Pods_social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95EF5ED8A51FE8A398E2AC9 /* Pods_social.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +30,9 @@
 		311BC5911F696843003D40FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		311BC5971F696A67003D40FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		312ED9CC1F69C77A00E70278 /* social.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = social.entitlements; sourceTree = "<group>"; };
+		31698EAA1F69D43D00505A9E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		31698EAC1F69E95200505A9E /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		31698EAE1F69EF0A00505A9E /* postCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postCell.swift; sourceTree = "<group>"; };
 		B95EF5ED8A51FE8A398E2AC9 /* Pods_social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89323B44A96245C1A297EEA /* Pods-social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-social.release.xcconfig"; path = "Pods/Target Support Files/Pods-social/Pods-social.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +70,7 @@
 		311BC5841F696843003D40FB /* social */ = {
 			isa = PBXGroup;
 			children = (
+				31698EA91F69D42600505A9E /* Utilities */,
 				312ED9CC1F69C77A00E70278 /* social.entitlements */,
 				311BC5991F696BA5003D40FB /* Model */,
 				311BC59A1F696BAD003D40FB /* View */,
@@ -88,6 +95,7 @@
 		311BC59A1F696BAD003D40FB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31698EAE1F69EF0A00505A9E /* postCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -96,8 +104,17 @@
 			isa = PBXGroup;
 			children = (
 				311BC5871F696843003D40FB /* SignInVc.swift */,
+				31698EAC1F69E95200505A9E /* FeedVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		31698EA91F69D42600505A9E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				31698EAA1F69D43D00505A9E /* Constants.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		D0276F5A3415E968A4459CA9 /* Frameworks */ = {
@@ -247,8 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31698EAD1F69E95200505A9E /* FeedVC.swift in Sources */,
 				311BC5881F696843003D40FB /* SignInVc.swift in Sources */,
 				311BC5861F696843003D40FB /* AppDelegate.swift in Sources */,
+				31698EAB1F69D43D00505A9E /* Constants.swift in Sources */,
+				31698EAF1F69EF0A00505A9E /* postCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
