@@ -60,6 +60,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfV-3r-tKN">
                                 <rect key="frame" x="166" y="388" width="43" height="30"/>
                                 <state key="normal" title="SignIn"/>
+                                <connections>
+                                    <action selector="signinBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JDG-Nb-dbJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a SignIn Method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhH-Vo-uGK">
                                 <rect key="frame" x="108" y="117" width="159" height="18"/>
@@ -95,6 +98,10 @@
                             <constraint firstItem="DU4-je-hLm" firstAttribute="trailing" secondItem="iW0-vW-zEc" secondAttribute="trailing" id="qVF-UV-JO7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTxtField" destination="DU4-je-hLm" id="jPB-rv-j6R"/>
+                        <outlet property="passwordTxtField" destination="iW0-vW-zEc" id="o2N-fk-f1g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

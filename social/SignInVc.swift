@@ -13,6 +13,9 @@ import FBSDKLoginKit
 
 class SignInVc: UIViewController {
 
+    @IBOutlet weak var emailTxtField: UITextField!
+    @IBOutlet weak var passwordTxtField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,6 +50,26 @@ class SignInVc: UIViewController {
             }
         }
     }
+    @IBAction func signinBtnTapped(_ sender: Any) {
+        if let email = emailTxtField.text , let pwd = passwordTxtField.text {
+            Auth.auth().signIn(withEmail: email, password: pwd, completion: { (user, error) in
+                if error == nil {
+                    print("email user authenticated")
+                } else
+                {
+                  Auth.auth().createUser(withEmail: email, password: pwd, completion: { (user, error) in
+                    if error != nil {
+                        print("email auth cancelled")
+                    } else
+                    {
+                        print("user created")
+                    }
+                  })
+                }
+            })
+        }
+    }
+    
 
 }
 
