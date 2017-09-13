@@ -38,6 +38,9 @@
                                     <constraint firstAttribute="width" constant="68" id="Hed-RK-fOu"/>
                                 </constraints>
                                 <state key="normal" image="facebook"/>
+                                <connections>
+                                    <action selector="fbBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tg6-N5-lsm"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DU4-je-hLm">
                                 <rect key="frame" x="16" y="281" width="343" height="30"/>

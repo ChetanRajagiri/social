@@ -26,6 +26,7 @@
 		311BC58F1F696843003D40FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		311BC5911F696843003D40FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		311BC5971F696A67003D40FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		312ED9CC1F69C77A00E70278 /* social.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = social.entitlements; sourceTree = "<group>"; };
 		B95EF5ED8A51FE8A398E2AC9 /* Pods_social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89323B44A96245C1A297EEA /* Pods-social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-social.release.xcconfig"; path = "Pods/Target Support Files/Pods-social/Pods-social.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +64,7 @@
 		311BC5841F696843003D40FB /* social */ = {
 			isa = PBXGroup;
 			children = (
+				312ED9CC1F69C77A00E70278 /* social.entitlements */,
 				311BC5991F696BA5003D40FB /* Model */,
 				311BC59A1F696BAD003D40FB /* View */,
 				311BC59B1F696BCB003D40FB /* Controller */,
@@ -152,6 +154,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = UKYWR4SYJL;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -365,6 +372,7 @@
 			baseConfigurationReference = 15E60078AE5AC8AAF39E7743 /* Pods-social.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = social/social.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = UKYWR4SYJL;
 				INFOPLIST_FILE = social/Info.plist;
@@ -382,6 +390,7 @@
 			baseConfigurationReference = E89323B44A96245C1A297EEA /* Pods-social.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = social/social.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = UKYWR4SYJL;
 				INFOPLIST_FILE = social/Info.plist;
