@@ -21,6 +21,11 @@ class SignInVc: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if (KeychainWrapper.standard.string(forKey: KEY_UID) != nil)  {
+             performSegue(withIdentifier: "GotoFeedVC", sender: nil)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -49,7 +54,8 @@ class SignInVc: UIViewController {
             }else{
                 print("Successfully authenticated with firebase")
                 if let user = user {
-                    self.completeSigIn(id: user.uid)
+                    let userData = ["provider" : credential.provider]
+                    self.completeSigIn(id: user.uid, userData: userData)
                 }
             }
         }
@@ -60,7 +66,8 @@ class SignInVc: UIViewController {
                 if error == nil {
                     print("email user authenticated")
                     if let user = user {
-                        self.completeSigIn(id: user.uid)
+                        let userData = ["provider" : user.providerID]
+                        self.completeSigIn(id: user.uid, userData: userData)
                     }
                 } else
                 {
@@ -71,7 +78,8 @@ class SignInVc: UIViewController {
                     {
                         print("user created")
                         if let user = user {
-                            self.completeSigIn(id: user.uid)
+                            let userData = ["provider" : user.providerID]
+                            self.completeSigIn(id: user.uid, userData:userData )
                         }
                     }
                   })
@@ -79,7 +87,8 @@ class SignInVc: UIViewController {
             })
         }
     }
-    func completeSigIn(id: String)  {
+    func completeSigIn(id: String, userData: Dictionary<String, String>)  {
+        DataService.ds.createFirebaseDBUser(uid: id, userdata: userData)
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
         performSegue(withIdentifier: "GotoFeedVC", sender: nil)
     }

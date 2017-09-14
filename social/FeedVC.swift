@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+import Firebase
 
 class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
-
     
     @IBOutlet weak var tableView: UITableView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -28,6 +28,18 @@ class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Post Cell") as! postCell
         return cell
     }
+    
+    @IBAction func signOutBtnTapped(_ sender: UITapGestureRecognizer) {
+        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+        try? Auth.auth().signOut()
+        performSegue(withIdentifier: "gobacktoSignin", sender: nil)
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
