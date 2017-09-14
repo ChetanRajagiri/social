@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import SwiftKeychainWrapper
 
 
 @UIApplicationMain
@@ -21,6 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
+        if (KeychainWrapper.standard.string(forKey: KEY_UID) != nil)  {
+          self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+           
+        }else{
+             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
+        }
         // Override point for customization after application launch.
         return true
     }

@@ -21,11 +21,6 @@ class SignInVc: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    override func viewDidAppear(_ animated: Bool) {
-        if (KeychainWrapper.standard.string(forKey: KEY_UID) != nil)  {
-             performSegue(withIdentifier: "GotoFeedVC", sender: nil)
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
