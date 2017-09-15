@@ -10,14 +10,20 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
+class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageAdded: UIImageView!
     
     var Posts = [Post] ()
+    var imagePicker : UIImagePickerController!
+    static var imageCache: NSCache <NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
@@ -40,17 +46,35 @@ class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         return Posts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let post = Posts [indexPath.row]
-        let caption = post.caption
-        print(caption)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Post Cell") as! postCell
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Post Cell") as? postCell {
+            cell.configureCell(post: post)
+            return cell
+        }else {
+            return postCell()
+        }
     }
     
     @IBAction func signOutBtnTapped(_ sender: UITapGestureRecognizer) {
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         try? Auth.auth().signOut()
         performSegue(withIdentifier: "gobacktoSignin", sender: nil)
+    }
+    
+    @IBAction func addImgTapped(_ sender: UITapGestureRecognizer) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let imagePicked = info [UIImagePickerControllerEditedImage] as? UIImage {
+            imageAdded.image = imagePicked
+        }
+        else if let originalImagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageAdded.image = originalImagePicked
+        }else{
+            print("valid img nt selected")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     

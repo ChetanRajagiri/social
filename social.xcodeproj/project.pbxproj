@@ -74,9 +74,9 @@
 		311BC5841F696843003D40FB /* social */ = {
 			isa = PBXGroup;
 			children = (
+				312ED9CC1F69C77A00E70278 /* social.entitlements */,
 				314EE9F61F69FDD30097B09E /* Services */,
 				31698EA91F69D42600505A9E /* Utilities */,
-				312ED9CC1F69C77A00E70278 /* social.entitlements */,
 				311BC5991F696BA5003D40FB /* Model */,
 				311BC59A1F696BAD003D40FB /* View */,
 				311BC59B1F696BCB003D40FB /* Controller */,
