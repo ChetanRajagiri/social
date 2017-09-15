@@ -26,21 +26,25 @@ class Post {
     var postkey: String {
         return _postkey
     }
+    
+    
     init(caption: String , imageurl: String , likes: Int ) {
         self._caption = caption
         self._imageurl = imageurl
         self._likes = likes
     }
+    
     init(postkey: String, postdata: Dictionary <String, AnyObject>) {
         self._postkey = postkey
         if let caption = postdata ["caption"] as? String {
             self._caption = caption
         }
-        if let imageurl = postdata ["imageurl"] as? String {
+        if let imageurl = postdata ["imgurl"] as? String {
             self._imageurl = imageurl
         }
         if let likes = postdata ["likes"] as? Int {
             self._likes = likes
         }
+        
     }
 }

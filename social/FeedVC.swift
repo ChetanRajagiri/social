@@ -10,6 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
+
 class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
@@ -45,15 +46,30 @@ class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource, UII
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Posts.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         
         let post = Posts [indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Post Cell") as? postCell {
+        
+
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Post Cell") as? postCell
+        {
+            if let img = FeedVC.imageCache.object(forKey: post.imageurl as NSString)
+            {
+                cell.configureCell(post: post, img: img)
+                return cell
+            }
+            else
+            {
             cell.configureCell(post: post)
             return cell
-        }else {
-            return postCell()
+            }
         }
+            else
+            {
+            return postCell()
+            }
+        
     }
     
     @IBAction func signOutBtnTapped(_ sender: UITapGestureRecognizer) {
