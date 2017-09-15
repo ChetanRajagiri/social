@@ -15,14 +15,17 @@ class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource, UII
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageAdded: UIImageView!
+    @IBOutlet weak var captionField: UITextField!
     
     var Posts = [Post] ()
-    var imagePicker : UIImagePickerController!
+//    var imagePicker : UIImagePickerController!
     static var imageCache: NSCache <NSString, UIImage> = NSCache()
+    var imageselector = false
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker = UIImagePickerController()
+//        imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
@@ -81,18 +84,66 @@ class FeedVC: UIViewController , UITableViewDelegate, UITableViewDataSource, UII
     @IBAction func addImgTapped(_ sender: UITapGestureRecognizer) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let imagePicked = info [UIImagePickerControllerEditedImage] as? UIImage {
             imageAdded.image = imagePicked
+            imageselector = true
         }
         else if let originalImagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageAdded.image = originalImagePicked
+            imageselector = true
         }else{
             print("valid img nt selected")
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func postBtnTapd(_ sender: Any) {
+        guard let caption = captionField.text , caption != " " else {
+            print("caption must be entered")
+            return
+        }
+        guard let img = imageAdded.image,  imageselector == true else {
+            print("image must be added")
+            return
+        }
+        if let imgdata = UIImageJPEGRepresentation(img, 0.2)
+        {
+          let imgUid = NSUUID().uuidString
+            let metadata = StorageMetadata()
+            DataService.ds.REF_POSTS_IMAGES.child(imgUid).putData(imgdata, metadata: metadata, completion: { (metadata, error) in
+                if error != nil {
+                    print("unable to upload to firebase")
+                    
+                }
+                else{
+                    print("successfully uploade")
+                    let downloadUrl = metadata?.downloadURL()?.absoluteString
+                }
+            })
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+
     
     
     
